@@ -1,1 +1,1 @@
-FROM nginx
+FROM mcr.microsoft.com/dotnet/core/aspnet

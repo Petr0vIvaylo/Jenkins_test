@@ -2,7 +2,6 @@ FROM mcr.microsoft.com/dotnet/core/aspnet AS base
 WORKDIR /app
 #EXPOSE 80
 
-
 #Stage 2: Build and publish the code
 
 FROM mcr.microsoft.com/dotnet/core/sdk AS build
@@ -14,7 +13,6 @@ RUN dotnet build -c Release
 
 FROM build AS publish
 RUN dotnet publish -c Release -o /publish
-
 
 #Stage 3: Build and publish the code
 

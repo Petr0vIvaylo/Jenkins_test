@@ -9,15 +9,15 @@ pipeline {
         stage('Build') {
             steps {
                 sh "echo 'build started'"
-                sh "docker build -t ipetrov84/education:dev ."
+                sh "docker build -t ivaylo_petrov ."
+                docker tag ivaylo_petrov:latest 555256523315.dkr.ecr.eu-central-1.amazonaws.com/ivaylo_petrov:latest
             }
         }
 
         stage('Push') {
             steps {
                 sh "echo 'pushing..'"
-                sh "docker push ipetrov84/education:dev"
-                sh "echo 'end'"
+                docker push 555256523315.dkr.ecr.eu-central-1.amazonaws.com/ivaylo_petrov:latest
             }
         }
     }

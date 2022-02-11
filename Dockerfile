@@ -3,7 +3,7 @@ WORKDIR /app
 EXPOSE 80
 
 
-Stage 2: Build and publish the code
+#Stage 2: Build and publish the code
 
 FROM mcr.microsoft.com/dotnet/core/sdk AS build
 WORKDIR /app
@@ -16,7 +16,7 @@ FROM build AS publish
 RUN dotnet publish -c Release -o /publish
 
 
-Stage 3: Build and publish the code
+#Stage 3: Build and publish the code
 
 FROM base AS final
 WORKDIR /app

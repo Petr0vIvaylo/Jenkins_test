@@ -17,7 +17,6 @@ pipeline {
         stage('Push') {
             steps {
                 sh "echo 'pushing..'"
-                sh "\$(aws ecr get-login --no-include-email --region eu-central-1)"
                 sh "docker push 555256523315.dkr.ecr.eu-central-1.amazonaws.com/ivaylo_petrov:latest"
             }
         }

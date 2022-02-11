@@ -1,14 +1,14 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet AS base
-#WORKDIR /app
+WORKDIR /app
 #EXPOSE 80
 
 
 #Stage 2: Build and publish the code
 
 FROM mcr.microsoft.com/dotnet/core/sdk AS build
-#WORKDIR /app
+WORKDIR /app
 COPY AnimalFarm.csproj .
-#RUN dotnet restore
+RUN dotnet restore
 COPY . .
 RUN dotnet build -c Release
 

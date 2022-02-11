@@ -17,7 +17,12 @@ pipeline {
         stage('Push') {
             steps {
                 sh "echo 'pushing..'"
-                sh "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 555256523315.dkr.ecr.eu-central-1.amazonaws.com"
+                
+                withAWS(credentials: 'aws-credentials', region: 'eu-central-1') {
+                    sh 'echo "hello KB">hello.txt'
+                    s3Upload acl: 'Private', bucket: '555256523315.dkr.ecr.eu-central-1.amazonaws.com/ivaylo_petrov', file: 'ivaylo_petrov'
+                }
+                
                 sh "docker push 555256523315.dkr.ecr.eu-central-1.amazonaws.com/ivaylo_petrov:latest"
             }
         }

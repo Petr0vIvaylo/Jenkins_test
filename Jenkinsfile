@@ -20,7 +20,6 @@ pipeline {
                 sh "docker push 555256523315.dkr.ecr.eu-central-1.amazonaws.com/ivaylo_petrov:latest"
                 }
             }
-        }
     }
 }
 

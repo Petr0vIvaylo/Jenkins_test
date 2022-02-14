@@ -7,7 +7,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk AS build
 WORKDIR /app
 COPY AnimalFarm.csproj .
-RUN dotnet restore
+RUN dotnet restore --no-dependencies
 COPY . .
 RUN dotnet build -c Release
 

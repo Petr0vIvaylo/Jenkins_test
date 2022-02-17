@@ -1,6 +1,7 @@
 pipeline {
+    def scannerHome = tool 'SonarScanner for MSBuild'
     agent any 
-        def scannerHome = tool 'SonarScanner for MSBuild'
+        
     triggers {
         githubPush()
     }
@@ -13,15 +14,12 @@ pipeline {
             }
         }
         
-        stage('Scan') {
+        stage(SonarQube_analysis) {
            steps {
                 withSonarQubeEnv(installationName: 'SonarQube'){
-                    
-                    withSonarQubeEnv() {
                     sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"test\""
                     sh "dotnet build AnimalFarm.csproj"
                     sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
-                    }
                 }
            }
         }

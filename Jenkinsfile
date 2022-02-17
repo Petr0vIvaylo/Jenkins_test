@@ -18,6 +18,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube'){
                     sh "dotnet build AnimalFarm.csproj"
+                    sh "./gradlew sonaqube"
                 }
             }    
         }

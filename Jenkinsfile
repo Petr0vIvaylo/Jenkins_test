@@ -13,11 +13,7 @@ pipeline {
             }
         }
         
-        stage('Push') {
-            steps {
-                
-             }
-        }
+        
         
         stage(SonarQube_analysis) {
             steps {

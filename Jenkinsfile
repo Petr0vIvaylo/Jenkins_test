@@ -13,17 +13,17 @@ pipeline {
             }
         }
         
-        
         stage(SonarQube_analysis) {
+            def scannerHome = tool 'SonarScanner for MSBuild'
             steps {
                 withSonarQubeEnv('SonarQube'){
-                    def scannerHome = tool 'SonarScanner for MSBuild'
                     sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"test\""
                     sh "dotnet build AnimalFarm.csproj"
                     sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
                 }
             }    
         }
+        
         
         stage("Quality gate") {
             steps {

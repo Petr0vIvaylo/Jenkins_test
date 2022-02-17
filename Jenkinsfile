@@ -16,7 +16,7 @@ pipeline {
         
         stage(SonarQube_analysis) {
             steps {
-                withSonarQubeEnv('SonarQube'){
+                withSonarQubeEnv('sonarqube'){
                 sh "dotnet build AnimalFarm.csproj"
                 sh "./gradlew sonarqube"
                 }

@@ -1,37 +1,36 @@
-node {
-    def scannerHome = tool 'SonarScanner_for_MSBuild'
     
-    pipeline {
-        agent any 
-            
-        triggers {
-            githubPush()
+pipeline {
+    agent any 
+        
+    triggers {
+        githubPush()
+    }
+  
+    
+    stages{
+        stage('Build') {
+            steps {
+                sh "echo 'build started'"
+               
+            }
         }
         
-        stages{
-            stage('Build') {
-                steps {
-                    sh "echo 'build started'"
-                   
+        stage(SonarQube_analysis) {
+            def scannerHome = tool 'SonarScanner_for_MSBuild'
+           steps {
+                withSonarQubeEnv(installationName: 'SonarQube'){
+                    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"test\""
+                    sh "dotnet build AnimalFarm.csproj"
+                    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end" 
                 }
-            }
-            
-            stage(SonarQube_analysis) {
-               steps {
-                    withSonarQubeEnv(installationName: 'SonarQube'){
-                        sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"test\""
-                        sh "dotnet build AnimalFarm.csproj"
-                        sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end" 
-                    }
-               }
-            }
-            
-            
-            stage("Quality gate") {
-                steps {
-                    timeout(time: 1, unit: 'MINUTES') {
-                        waitForQualityGate abortPipeline: true
-                    }
+           }
+        }
+        
+        
+        stage("Quality gate") {
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }

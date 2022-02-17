@@ -16,9 +16,9 @@ pipeline {
         stage(SonarQube_analysis) {
            steps {
                 withSonarQubeEnv(installationName: 'SonarQube'){
-                    sh "dotnet SonarScanner_for_MSBuild/SonarScanner.MSBuild.dll begin /k:\"test\""
+                    
                     sh "dotnet build AnimalFarm.csproj"
-                    sh "dotnet SonarScanner_for_MSBuild/SonarScanner.MSBuild.dll end"
+                    
                 }
            }
         }

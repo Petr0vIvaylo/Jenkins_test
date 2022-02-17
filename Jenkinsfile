@@ -13,7 +13,7 @@ pipeline {
             }
         }
         
-        stage(SonarQube_analysis) {
+        stage('Scan') {
            steps {
                 withSonarQubeEnv(installationName: 'SonarQube'){
                     

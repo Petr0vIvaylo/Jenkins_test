@@ -17,8 +17,7 @@ pipeline {
         stage(SonarQube_analysis) {
             steps {
                 withSonarQubeEnv('SonarQube'){
-                    sh "dotnet build AnimalFarm.csproj"
-                    sh "../../../sonar-scanner-2.9.0.670/bin/sonar-scanner" 
+                    sh "dotnet build AnimalFarm.csproj" && "sonarqube"
                 }
             }    
         }

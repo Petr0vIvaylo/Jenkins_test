@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "echo 'build started'"
-                sh "docker build -t ivaylo_petrov -f Dockerfile ."
+               
             }
         }
         

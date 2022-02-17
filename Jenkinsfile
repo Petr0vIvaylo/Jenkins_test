@@ -18,7 +18,7 @@ pipeline {
         stage(SonarQube_analysis) {
             steps {
                 withSonarQubeEnv('SonarQube'){
-                sh "./MSBuild sonarqube"
+                sh "sonarqube"
                 }
             }    
         }

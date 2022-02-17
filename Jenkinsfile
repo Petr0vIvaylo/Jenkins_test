@@ -16,11 +16,11 @@ pipeline {
         stage(SonarQube_analysis) {
            steps {
                 withSonarQubeEnv(installationName: 'SonarQube'){
-                    sh "dotnet tool install --global dotnet-sonarscanner"
-                    sh "dotnet sonarscanner begin /k:"test" /d:sonar.login="sonarQube""
-                    sh "dotnet build AnimalFarm.csproj"
-                    sh "dotnet sonarscanner end /d:sonar.login="sonarQube""
-                    sh "dotnet SonarScanner.MSBuild.dll /k:"test""
+                    @sh "dotnet tool install --global dotnet-sonarscanner"
+                    @sh "dotnet sonarscanner begin /k:"test" /d:sonar.login="sonarQube""
+                    @sh "dotnet build AnimalFarm.csproj"
+                    @sh "dotnet sonarscanner end /d:sonar.login="sonarQube""
+                    @sh "dotnet SonarScanner.MSBuild.dll /k:"test""
                     
                     
                 }

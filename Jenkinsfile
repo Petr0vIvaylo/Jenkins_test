@@ -1,4 +1,3 @@
-def scannerHome = tool 'SonarScanner for MSBuild'
 pipeline {
     agent any 
         
@@ -17,9 +16,9 @@ pipeline {
         stage(SonarQube_analysis) {
            steps {
                 withSonarQubeEnv(installationName: 'SonarQube'){
-                    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"test\""
+                    sh "dotnet SonarScanner_for_MSBuild/SonarScanner.MSBuild.dll begin /k:\"test\""
                     sh "dotnet build AnimalFarm.csproj"
-                    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
+                    sh "dotnet SonarScanner_for_MSBuild/SonarScanner.MSBuild.dll end"
                 }
            }
         }

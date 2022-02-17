@@ -1,6 +1,5 @@
 ﻿using System;
 using AnimalFarm.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AnimalFarm
 {

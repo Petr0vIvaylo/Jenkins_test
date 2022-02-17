@@ -1,5 +1,5 @@
+def scannerHome = tool 'SonarScanner for MSBuild'
 pipeline {
-    def scannerHome = tool 'SonarScanner for MSBuild'
     agent any 
         
     triggers {
